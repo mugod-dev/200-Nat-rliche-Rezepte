@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="200 Natürliche Rezepte von Chef Sebastian Becker: hausgemachte Gerichte für ein gesundes und langes Leben.">
+<title>200 Natürliche Rezepte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Sans+3:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Mobile-first, eine Spalte von 520px, Blöcke vertikal gestapelt */
+:root {
+  --verde-escuro:#141414; --verde-medio:#C8102E; --verde-claro:#FDEDEE;
+  --dourado:#F2B300; --dourado-2:#FFCE00; --dourado-claro:#FFF3C4;
+  --terracota:#B0101F; --creme:#FAF8F4; --branco:#FFFFFF;
+  --texto:#2C2C2C; --texto-light:#666666; --cinza:#5E5A57;
+  --linha:#EFECE7; --trilho:#E9E5DF; --review-bg:#FFFEF9;
+  --live-bg:#FFF8DC; --live-border:#F2E2A6; --live-text:#4A4642; --dot:#2D8A4E;
+  --border:#DDDDDD; --border-opt:#E0E0E0; --radio:#CCCCCC; --placeholder:#BBBBBB;
+  --alert-bg:#FFF2F2; --alert-border:#F5C9CC;
+  --font-display:"Playfair Display", Georgia, serif;
+  --font-body:"Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --radius:12px;
+  --sombra:0 2px 16px rgba(0,0,0,.08);
+  --grad-header:linear-gradient(135deg,#0E0E0E,#2A2A2A);
+  --grad-cta:linear-gradient(135deg,#F2B300,#FFCE00);
+  --flag:linear-gradient(90deg,#141414 0 33.3%,#DD0000 33.3% 66.6%,#FFCE00 66.6%);
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+html{background:var(--creme)}
+body{background:var(--creme);color:var(--texto);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body.has-sticky{padding-bottom:80px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:101;background:#0E0E0E}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid rgba(200,16,46,.4);outline-offset:2px}
+
+/* Dringlichkeitsleiste */
+.urgency-bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--grad-header);color:var(--branco);text-align:center;font-size:.88rem;font-weight:600;letter-spacing:.3px;border-bottom:4px solid transparent;border-image:var(--flag) 1;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.urgency-bar span:first-child{opacity:.9}
+.timer{display:inline-block;margin-left:6px;background:rgba(255,255,255,.15);padding:2px 10px;border-radius:4px;font-variant-numeric:tabular-nums}
+
+.container{max-width:520px;margin:0 auto;padding-bottom:40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Hero */
+.hero{text-align:center;padding:32px 0 24px}
+.hero-badge{display:inline-block;background:#141414;color:var(--dourado-2);border-radius:20px;padding:6px 16px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.hero h1{font-family:var(--font-display);font-size:1.75rem;font-weight:700;line-height:1.25;color:var(--verde-escuro);margin-bottom:8px;text-wrap:balance}
+.hero-sub{font-family:var(--font-display);font-style:italic;color:var(--cinza);margin-bottom:16px}
+.stars{color:var(--dourado);text-shadow:0 0 1px rgba(0,0,0,.25);font-size:1.1rem;letter-spacing:1px}
+.rating-count{font-size:.82rem;color:var(--texto-light)}
+.sales-count{margin-top:6px;font-size:.8rem;font-weight:600;color:var(--verde-medio)}
+.sales-count strong{font-weight:900}
+
+/* 3D-Buch */
+.book-section{display:flex;justify-content:center;padding:0 0 20px}
+.book-img{display:block;width:100%;max-width:380px;height:auto;mix-blend-mode:multiply;transition:transform .4s}
+.book-img:hover{transform:translateY(-4px) scale(1.01)}
+
+/* Live-Zähler */
+.live-wrap{display:flex;justify-content:center;margin-bottom:24px}
+.live-pill{display:inline-flex;align-items:center;gap:8px;background:var(--live-bg);border:1px solid var(--live-border);border-radius:20px;padding:8px 20px;font-size:.82rem;color:var(--live-text);font-weight:600}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--dot);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(45,138,78,.5)}70%{box-shadow:0 0 0 8px rgba(45,138,78,0)}100%{box-shadow:0 0 0 0 rgba(45,138,78,0)}}
+
+/* Vorteile */
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.benefit{background:var(--branco);border-radius:var(--radius);padding:14px 12px;box-shadow:var(--sombra);border:1px solid rgba(0,0,0,.04);text-align:center}
+.benefit-icon{font-size:1.4rem;margin-bottom:4px}
+.benefit-label{font-size:.78rem;font-weight:600;color:var(--verde-escuro);line-height:1.3}
+
+/* Karte */
+.card{background:var(--branco);border-radius:var(--radius);padding:24px 20px;margin-bottom:16px;box-shadow:var(--sombra);border:1px solid rgba(0,0,0,.04)}
+.card-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--verde-escuro);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+
+.features{list-style:none}
+.features li{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--linha);font-size:.92rem;align-items:flex-start}
+.features li:last-child{border-bottom:none}
+.check{color:var(--verde-medio);font-weight:700;font-size:1.1rem;line-height:1.3}
+.features .txt{flex:1;min-width:0}
+.tag-bonus{display:inline-block;background:var(--dourado-claro);color:#8A6400;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:2px 7px;border-radius:4px;margin-right:6px;vertical-align:1px}
+.strike{font-size:.8rem;color:var(--texto-light);text-decoration:line-through;white-space:nowrap}
+
+/* Formular */
+.form-group{margin-bottom:14px}
+.form-group:last-child{margin-bottom:0}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--texto);margin-bottom:5px}
+.form-group input{width:100%;padding:13px 14px;font-size:1rem;font-family:inherit;color:var(--texto);border:1.5px solid var(--border);border-radius:8px;background:var(--creme);transition:border-color .2s,box-shadow .2s}
+.form-group input:focus{outline:none;border-color:var(--verde-medio);background:var(--branco);box-shadow:0 0 0 3px rgba(200,16,46,.18)}
+.form-group input::placeholder{color:var(--placeholder)}
+.form-group input.invalid{border-color:var(--terracota)}
+.field-error{font-size:.75rem;color:var(--terracota);font-weight:600;margin-top:4px}
+.form-note{font-size:.75rem;color:var(--texto-light);margin-top:-4px}
+
+/* Zahlung über Stripe */
+.stripe-info{font-size:.88rem;color:var(--cinza);margin-bottom:12px}
+.pay-methods{display:flex;flex-wrap:wrap;gap:8px}
+.pay-methods span{border:1.5px solid var(--border-opt);border-radius:8px;padding:8px 12px;font-size:.82rem;font-weight:700;color:var(--texto);background:var(--branco)}
+.stripe-note{font-size:.75rem;color:var(--texto-light);margin-top:12px;display:flex;align-items:center;gap:6px}
+
+/* Order Bump */
+.bump{border:2.5px dashed var(--dourado);border-radius:var(--radius);background:linear-gradient(135deg,#FFFBEA 0%,#FFFDF5 100%);overflow:hidden;margin-bottom:16px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s;display:block}
+.bump:hover{border-color:var(--terracota);box-shadow:0 4px 20px rgba(200,16,46,.15)}
+.bump-head{background:var(--grad-cta);color:var(--verde-escuro);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.bump-head input{width:22px;height:22px;accent-color:#141414;flex-shrink:0;cursor:pointer}
+.bump-body{display:flex;gap:14px;padding:16px}
+.bump-img{width:120px;height:120px;flex-shrink:0;border-radius:10px;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;color:var(--branco);padding:8px}
+.bump-img .e{font-size:2.2rem;line-height:1}
+.bump-img .l{font-family:var(--font-display);font-size:.78rem;line-height:1.15}
+.bump-img.dessert{background:linear-gradient(160deg,#DD0000,#8A0A16)}
+.bump-img img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+.bump-text{flex:1;min-width:0}
+.bump-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;line-height:1.3;color:var(--verde-escuro);margin-bottom:4px}
+.bump-desc{font-size:.82rem;color:var(--cinza);line-height:1.45;margin-bottom:8px}
+.bump-price{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bump-price .old{font-size:.85rem;color:var(--texto-light);text-decoration:line-through}
+.bump-price .new{font-size:1.15rem;font-weight:700;color:var(--terracota)}
+.tag-save{background:var(--terracota);color:var(--branco);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px}
+.bump.checked{border-style:solid;border-color:var(--verde-escuro);background:linear-gradient(135deg,#FFF3C4 0%,#FFFBEA 100%)}
+.bump.checked .bump-head{background:linear-gradient(135deg,#141414,#2A2A2A);color:var(--dourado-2)}
+
+/* Bestellübersicht */
+.summary{background:var(--branco);border:2px solid var(--verde-escuro);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.summary h3{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--verde-escuro);margin-bottom:8px}
+.sum-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:.88rem;border-bottom:1px solid var(--linha)}
+.sum-row span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.sum-row.coupon{color:var(--terracota);font-weight:600}
+.sum-row.discount{color:var(--verde-medio);font-weight:600}
+.sum-row.bumpline{color:#9A6F00;font-weight:600}
+.sum-row .muted{color:var(--texto-light);text-decoration:line-through;margin-right:6px;font-weight:400}
+.sum-total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--verde-escuro);margin-top:8px;padding-top:12px}
+.sum-total .label{font-weight:700;font-size:1rem}
+.sum-total .label small{display:block;font-weight:400;font-size:.72rem;color:var(--texto-light)}
+.sum-total .value{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--verde-medio);font-variant-numeric:tabular-nums}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-border);border-radius:8px;padding:10px 12px;color:var(--terracota);font-weight:600;font-size:.85rem;margin-top:14px}
+.scarcity{background:var(--creme);border-left:3px solid var(--dourado);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:12px}
+.scarcity-top{display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;margin-bottom:8px;gap:8px}
+.scarcity-top strong{color:var(--terracota)}
+.track{height:10px;background:var(--trilho);border-radius:20px;overflow:hidden}
+.fill{height:100%;width:83%;background:linear-gradient(90deg,#DD0000,#FFCE00);border-radius:20px;position:relative;overflow:hidden;transition:width .6s}
+.fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.2) 50%,transparent 100%);animation:shimmer 2s ease infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* Garantie */
+.guarantee{text-align:center;padding:20px;border:2px dashed var(--dourado);border-radius:var(--radius);background:var(--branco);margin-bottom:20px}
+.guarantee .shield{font-size:2rem}
+.guarantee h3{font-family:var(--font-display);font-size:1rem;color:var(--verde-escuro);margin:4px 0}
+.guarantee p{font-size:.82rem;color:var(--texto-light);max-width:360px;margin:0 auto}
+
+/* CTA */
+.cta-button{display:block;text-align:center;text-decoration:none;width:100%;margin-bottom:12px;border:none;border-radius:10px;padding:18px;background:var(--grad-cta);color:var(--verde-escuro);font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 20px rgba(242,179,0,.4);transition:transform .3s,box-shadow .3s;animation:ctaPulse 3s infinite}
+.cta-button:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(242,179,0,.5)}
+.cta-button:active{transform:translateY(0)}
+@keyframes ctaPulse{0%,85%,100%{box-shadow:0 4px 20px rgba(242,179,0,.4)}92%{box-shadow:0 4px 30px rgba(242,179,0,.65),0 0 0 6px rgba(242,179,0,.18)}}
+.cta-sub{text-align:center;font-size:.75rem;color:var(--texto-light);margin-bottom:12px}
+.pay-flags{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-bottom:32px}
+.pay-flags span{background:var(--linha);color:var(--cinza);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:4px}
+
+/* Bewertungen */
+
+/* Vertrauen */
+.trust{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;font-size:.75rem;color:var(--texto-light);text-align:center}
+.legal{text-align:center;font-size:.7rem;color:var(--placeholder);margin-top:16px}
+
+/* Feste Elemente */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:99;background:var(--branco);box-shadow:0 -2px 12px rgba(0,0,0,.12);padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .3s}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta button{display:block;width:100%;max-width:520px;margin:0 auto;border:none;border-radius:12px;padding:16px;background:var(--grad-cta);color:var(--verde-escuro);font-size:1.05rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+
+.toast{position:fixed;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:98;background:var(--branco);border-radius:10px;border-left:3px solid var(--verde-medio);box-shadow:0 4px 24px rgba(0,0,0,.15);padding:12px 16px;max-width:340px;font-size:.82rem;display:flex;gap:10px;align-items:center;animation:toastIn .4s ease}
+.toast.out{animation:toastOut .4s ease forwards}
+.toast .t-ico{font-size:1.3rem}
+.toast small{display:block;color:var(--texto-light);font-size:.72rem}
+body.has-sticky .toast{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(20px)}}
+
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.popup{background:var(--branco);border-radius:16px;max-width:420px;width:100%;padding:32px 28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .3s ease}
+@keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.popup .big{font-size:2.4rem}
+.popup h3{font-family:var(--font-display);font-size:1.3rem;line-height:1.3;color:var(--verde-escuro);margin:8px 0}
+.popup p{font-size:.9rem;color:var(--cinza);margin-bottom:16px}
+.coupon-code{display:inline-block;border:2px dashed var(--terracota);color:var(--terracota);font-weight:800;letter-spacing:2px;padding:6px 16px;border-radius:8px;margin-bottom:18px}
+.popup-cta{display:block;width:100%;border:none;border-radius:10px;padding:16px;background:var(--grad-cta);color:var(--verde-escuro);font-size:1.05rem;font-weight:700;letter-spacing:.5px;margin-bottom:10px}
+.popup-no{background:none;border:none;color:var(--placeholder);font-size:.82rem}
+
+.success{text-align:center}
+.success .big{font-size:2.6rem}
+
+@media (max-width:768px){.toast{left:12px;right:12px;max-width:none}}
+@media (max-width:400px){
+  .hero h1{font-size:1.5rem}
+  .sum-total .value{font-size:1.6rem}
+  .benefits{gap:8px}.benefit{padding:10px 8px}
+  .bump-img{width:90px;height:90px}.bump-img .e{font-size:1.7rem}.bump-img .l{font-size:.68rem}
+  .bump-title{font-size:.88rem}.bump-desc{font-size:.76rem}
+  .bump-head{padding:10px 14px;font-size:.76rem}
+  .bump-body{padding:14px;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="urgency-bar" role="status">
+  <span>🔥 Zeitlich begrenztes Angebot · ⏳ Endet in</span><span class="timer" id="timer">15:00</span>
+</div>
+
+<main class="container">
+  <section class="hero">
+    <span class="hero-badge">Limitierte Ausgabe 2026</span>
+    <h1>200 Natürliche Rezepte</h1>
+    <p class="hero-sub">Hausgemachte Gerichte für ein gesundes und langes Leben, von Chef Sebastian Becker</p>
+    <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+    <div class="rating-count">4,9 von 5 · 1.284 Bewertungen</div>
+    <div class="sales-count">Schon <strong id="sold">3.917</strong> Familien kochen damit</div>
+  </section>
+
+  <div class="book-section">
+    <img class="book-img" src="livro.webp" width="1342" height="1172" alt="Buch: 200 Natürliche Rezepte von Chef Sebastian Becker">
+  </div>
+
+  <div class="live-wrap">
+    <div class="live-pill"><span class="live-dot"></span><span><strong id="live">27</strong> Personen sehen sich das gerade an</span></div>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit"><div class="benefit-icon">📱</div><div class="benefit-label">Sofortiger Zugang per E-Mail</div></div>
+    <div class="benefit"><div class="benefit-icon">🥕</div><div class="benefit-label">Natürliche Zutaten aus jedem Supermarkt</div></div>
+    <div class="benefit"><div class="benefit-icon">⏱️</div><div class="benefit-label">Die meisten Gerichte in 30 Min.</div></div>
+    <div class="benefit"><div class="benefit-icon">🛡️</div><div class="benefit-label">30 Tage Geld-zurück-Garantie</div></div>
+  </div>
+
+  <section class="card">
+    <h2 class="card-title">🎁 Das bekommst du</h2>
+    <ul class="features">
+      <li><span class="check">✓</span><span class="txt">E-Book „200 Natürliche Rezepte“ von Chef Sebastian Becker (PDF, 380 Seiten)</span><span class="strike">39,90 €</span></li>
+      <li><span class="check">✓</span><span class="txt">Schritt-für-Schritt-Fotos zu jedem Rezept</span></li>
+      <li><span class="check">✓</span><span class="txt">Umrechnungstabelle: Gramm, Tassen, Löffel</span></li>
+      <li><span class="check">✓</span><span class="txt"><span class="tag-bonus">Bonus</span>Leitfaden „Saisonal einkaufen: Was wann am besten schmeckt“</span><span class="strike">9,90 €</span></li>
+      <li><span class="check">✓</span><span class="txt"><span class="tag-bonus">Bonus</span>12 natürliche Saucen und Dressings ohne Zusatzstoffe</span><span class="strike">7,90 €</span></li>
+      <li><span class="check">✓</span><span class="txt">Lebenslanger Zugang und kostenlose Updates</span></li>
+    </ul>
+  </section>
+
+  <form id="checkout" novalidate>
+    <section class="card">
+      <h2 class="card-title">📋 Deine Daten</h2>
+      <div class="form-group">
+        <label for="name">Vollständiger Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="z. B. Anna Schneider" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="deine@email.de" required>
+      </div>
+      <p class="form-note">Wir schicken das E-Book sofort an diese Adresse.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="card-title">💳 Sichere Zahlung</h2>
+      <p class="stripe-info">Nach dem Klick auf „Jetzt kaufen“ öffnet sich die sichere Bezahlseite von Stripe. Dort wählst du deine Zahlungsart:</p>
+      <div class="pay-methods"><span>💳 Kredit- &amp; Debitkarte</span><span>PayPal</span><span>Klarna</span><span>Apple Pay</span><span>Google Pay</span></div>
+      <div class="stripe-note">🔒 Verschlüsselt und abgewickelt von Stripe. Deine Kartendaten sehen wir nie.</div>
+    </section>
+
+    <label class="bump" id="bump1">
+      <div class="bump-head"><input type="checkbox" id="b1" data-price="4.90"> Ja, ich will das auch!</div>
+      <div class="bump-body">
+        <div class="bump-img dessert"><img src="airfryer.webp" width="420" height="572" alt="Buch: 50 Rezepte aus der Heißluftfritteuse"></div>
+        <div class="bump-text">
+          <div class="bump-title">50 Rezepte aus der Heißluftfritteuse</div>
+          <div class="bump-desc">Knusprige, einfache und gesunde Gerichte für jeden Tag, mit wenig Öl. Nur hier, nur jetzt.</div>
+          <div class="bump-price"><span class="old">14,90 €</span><span class="new">4,90 €</span><span class="tag-save">Spare 67 %</span></div>
+        </div>
+      </div>
+    </label>
+
+    <section class="summary" aria-live="polite">
+      <h3>🧾 Bestellübersicht</h3>
+      <div id="sum-rows"></div>
+      <div class="sum-total"><span class="label">Gesamt<small>inkl. MwSt.</small></span><span class="value" id="total">9,00 €</span></div>
+      <div class="alert">⚠️ Der Rabatt gilt nur, solange der Timer läuft.</div>
+      <div class="scarcity">
+        <div class="scarcity-top"><span>Exemplare zum Aktionspreis</span><strong id="left">Nur noch 17 übrig</strong></div>
+        <div class="track"><div class="fill" id="fill"></div></div>
+      </div>
+    </section>
+
+    <div class="guarantee">
+      <div class="shield">🛡️</div>
+      <h3>30 Tage Geld-zurück-Garantie</h3>
+      <p>Probiere die Rezepte in Ruhe aus. Wenn sie dir nicht gefallen, schreib uns eine E-Mail und du bekommst dein Geld vollständig zurück.</p>
+    </div>
+
+    <a class="cta-button" id="main-cta" href="https://buy.stripe.com/28E4gB1p0aqndOA7S8cbC01" rel="noopener">Jetzt kaufen 🔒</a>
+    <p class="cta-sub">Sichere Zahlung über Stripe · Zugang sofort nach dem Kauf</p>
+    <div class="pay-flags"><span>VISA</span><span>Mastercard</span><span>AMEX</span><span>PayPal</span><span>Klarna</span><span>Apple Pay</span></div>
+  </form>
+
+  <div class="trust">
+    <span>🔒 SSL-verschlüsselt</span>
+    <span>📧 Zugang per E-Mail</span>
+    <span>🛡️ 30 Tage Garantie</span>
+    <span>💬 Support auf Deutsch</span>
+  </div>
+  <p class="legal">© 2026 · Impressum · Datenschutz · AGB · Widerrufsbelehrung</p>
+</main>
+
+<div class="sticky-cta" id="sticky"><button type="button" id="sticky-btn">Jetzt kaufen · <span id="sticky-total">9,00 €</span></button></div>
+
+<div class="overlay" id="exit" hidden role="dialog" aria-modal="true" aria-labelledby="exit-title">
+  <div class="popup">
+    <div class="big">✋</div>
+    <h3 id="exit-title">Warte! Hier sind 3 € extra Rabatt</h3>
+    <p>Bevor du gehst: Mit diesem Gutschein bekommst du das Kochbuch von Chef Becker noch günstiger.</p>
+    <div class="coupon-code">BECKER3</div>
+    <button class="popup-cta" type="button" id="exit-yes">Gutschein einlösen</button>
+    <button class="popup-no" type="button" id="exit-no">Nein danke, ich zahle lieber den vollen Preis</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const PRODUKT = 9.00, LISTE = 39.90, GUTSCHEIN = 3.00;
+  // Stripe Payment Links
+  const LINK_A = 'https://buy.stripe.com/28E4gB1p0aqndOA7S8cbC01'; // nur Hauptbuch (9,00 €)
+  const LINK_B = 'https://buy.stripe.com/9B66oJd7IdCzh0M4FWcbC00'; // Hauptbuch + Heißluftfritteuse (13,90 €)
+  const GUTSCHEIN_CODE = 'BECKER3';
+  const eur = n => n.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+  const $ = id => document.getElementById(id);
+  let coupon = false;
+
+  // Timer
+  let secs = 15*60;
+  const tick = () => {
+    const m = String(Math.floor(secs/60)).padStart(2,'0'), s = String(secs%60).padStart(2,'0');
+    $('timer').textContent = m + ':' + s;
+    if (secs > 0) secs--;
+  };
+  tick(); setInterval(tick, 1000);
+
+  // Order Bumps
+  ['b1'].forEach(id => $(id).addEventListener('change', e => {
+    e.target.closest('.bump').classList.toggle('checked', e.target.checked);
+    render();
+  }));
+
+  function render(){
+    let rows = `<div class="sum-row"><span>200 Natürliche Rezepte</span><span><span class="muted">${eur(LISTE)}</span>${eur(PRODUKT)}</span></div>`;
+    let total = PRODUKT;
+    if ($('b1').checked){ rows += `<div class="sum-row bumpline"><span>+ 50 Rezepte aus der Heißluftfritteuse</span><span>${eur(4.90)}</span></div>`; total += 4.90; }
+    if (coupon){ rows += `<div class="sum-row coupon"><span>Gutschein BECKER3</span><span>−${eur(GUTSCHEIN)}</span></div>`; total -= GUTSCHEIN; }
+    $('sum-rows').innerHTML = rows;
+    $('total').textContent = eur(total);
+    $('sticky-total').textContent = eur(total);
+    updateLink();
+  }
+  render();
+
+  // Live-Zähler und verbleibende Exemplare
+  setInterval(() => {
+    const v = Math.max(14, Math.min(41, +$('live').textContent + Math.round(Math.random()*6-3)));
+    $('live').textContent = v;
+  }, 4000);
+  let left = 17;
+
+  // Kauf-Benachrichtigungen
+  const buyers = [['Julia','Stuttgart'],['Michael','Leipzig'],['Katrin','Bremen'],['Stefan','Dresden'],['Claudia','Frankfurt'],['Jonas','Hannover'],['Petra','Nürnberg']];
+  let bi = 0;
+  function toast(){
+    const [n,c] = buyers[bi++ % buyers.length];
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = `<span class="t-ico">🛒</span><span><strong>${n} aus ${c}</strong> hat gerade gekauft<small>vor ${2+Math.floor(Math.random()*9)} Minuten</small></span>`;
+    document.body.appendChild(t);
+    if (left > 4){ left--; $('left').textContent = `Nur noch ${left} übrig`; $('fill').style.width = (100 - left) + '%'; }
+    $('sold').textContent = (+$('sold').textContent.replace('.','') + 1).toLocaleString('de-DE');
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 4500);
+  }
+  setTimeout(toast, 6000); setInterval(toast, 18000);
+
+  // Sticky CTA
+  const cta = $('main-cta');
+  const io = new IntersectionObserver(([e]) => {
+    const show = !e.isIntersecting && e.boundingClientRect.top > 0;
+    $('sticky').classList.toggle('visible', show);
+    document.body.classList.toggle('has-sticky', show);
+  });
+  io.observe(cta);
+  $('sticky-btn').addEventListener('click', () => cta.scrollIntoView({behavior:'smooth', block:'center'}));
+
+  // Exit-Popup (einmal)
+  let exitShown = false;
+  const showExit = () => { if (exitShown || coupon) return; exitShown = true; $('exit').hidden = false; };
+  document.addEventListener('mouseout', e => { if (!e.relatedTarget && e.clientY < 10) showExit(); });
+  setTimeout(showExit, 45000);
+  $('exit-yes').addEventListener('click', () => { coupon = true; $('exit').hidden = true; render(); });
+  $('exit-no').addEventListener('click', () => { $('exit').hidden = true; });
+
+  // Weiter zu Stripe
+  function stripeUrl(){
+    const u = new URL($('b1').checked ? LINK_B : LINK_A);
+    const mail = $('email').value.trim();
+    if (mail) u.searchParams.set('prefilled_email', mail);
+    if (coupon) u.searchParams.set('prefilled_promo_code', GUTSCHEIN_CODE);
+    return u.toString();
+  }
+  function updateLink(){ $('main-cta').href = stripeUrl(); }
+  // In der Claude-Vorschau neuer Tab, auf der echten Website gleicher Tab
+  $('main-cta').target = window.self !== window.top ? '_blank' : '_self';
+  $('email').addEventListener('input', updateLink);
+  updateLink();
+
+  function validate(){
+    let ok = true;
+    document.querySelectorAll('.field-error').forEach(x => x.remove());
+    [['name','Bitte gib deinen Namen ein.'],['email','Bitte gib eine gültige E-Mail-Adresse ein.']].forEach(([id,msg]) => {
+      const el = $(id);
+      const valid = id === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()) : el.value.trim().length > 1;
+      el.classList.toggle('invalid', !valid);
+      if (!valid){ ok = false; const p = document.createElement('p'); p.className = 'field-error'; p.textContent = msg; el.after(p); }
+    });
+    if (!ok) $('name').closest('.card').scrollIntoView({behavior:'smooth', block:'center'});
+    return ok;
+  }
+  $('main-cta').addEventListener('click', e => {
+    if (!validate()){ e.preventDefault(); return; }
+    updateLink();
+  });
+  $('checkout').addEventListener('submit', e => { e.preventDefault(); $('main-cta').click(); });
+})();
+</script>
+</body>
+</html>
